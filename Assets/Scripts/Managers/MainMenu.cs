@@ -15,6 +15,6 @@ public class MainMenu : MonoBehaviour
     }
     public void Settings()
     {
-
+        // Опять работа
     }
 }
