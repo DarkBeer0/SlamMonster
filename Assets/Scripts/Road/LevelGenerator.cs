@@ -46,14 +46,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (currentRoadNumber < Road.Length / 2)
                     {
-                        if (lastRoadNumber != (Road.Length / 2) + currentRoadNumber)
-                        {
-                            RoadCreation();
-                        }
-                        else if (lastRoadNumber == (Road.Length / 2) + currentRoadNumber && currentRoadLength == Road.Length - 1)
-                        {
-                            RoadCreation();
-                        }
+                        RoadCreation();
                     }
                 }
                 else if (currentRoadNumber >= Road.Length / 2)

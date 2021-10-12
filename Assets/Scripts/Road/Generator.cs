@@ -7,7 +7,14 @@ public class Generator : MonoBehaviour
     [SerializeField] private Transform level;
     private void Awake()
     {
-        
-        Instantiate(level, new Vector3(20,(float) 0, 0), Quaternion.identity);
+        SpawnRoadPart(new Vector3(20, 0));
+        SpawnRoadPart(new Vector3(20, 0) + new Vector3(20,0));
+        SpawnRoadPart(new Vector3(20, 0) + new Vector3(20,0)); //x - 0.34 позиция примерной равности блоков
     }
+
+    private void SpawnRoadPart(Vector3 spawnPosition)
+    {
+        Instantiate(level, spawnPosition, Quaternion.identity);
+    }
+
 }
