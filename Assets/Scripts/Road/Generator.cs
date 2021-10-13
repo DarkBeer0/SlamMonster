@@ -8,13 +8,28 @@ using Random = UnityEngine.Random;
 public class Generator : MonoBehaviour
 {
     [SerializeField] private Transform level;
+    [SerializeField] private Transform trap;
+    public Transform DefaultFloor;
+    public Transform DefaultRoof;
+
     private static DateTime lastUpdate;
+
     private static List<Transform> roadList = new List<Transform>();
+    private static List<Transform> trapList = new List<Transform>();
+
+    private float floorY = 0, roofY = 0;
+
     private void Awake()
     {
+        if (DefaultFloor != null)
+            floorY = DefaultFloor.position.y + DefaultFloor.localScale.y / 2;
+
+        if (DefaultRoof != null)
+            roofY = DefaultRoof.position.y - DefaultRoof.localScale.y / 2;
+
         SpawnRoadPart(new Vector3(20, 0));
-        SpawnRoadPart(new Vector3(20, 0) + new Vector3(20,0));
-        SpawnRoadPart(new Vector3(40, 0) + new Vector3(20,0)); //y - 0.34 позиция примерной равности блоков
+        SpawnRoadPart(new Vector3(40, 0));
+        SpawnRoadPart(new Vector3(60, 0)); //y - 0.34 позиция примерной равности блоков
     }
 
     private void SpawnRoadPart(Vector3 spawnPosition)
@@ -44,7 +59,7 @@ public class Generator : MonoBehaviour
         if (Random.Range(0, 5) < 2)
         {
             Debug.Log("Monstr at: " + bufferRoad.position);
-            // TODO
+            trapList.Add(Instantiate(trap, new Vector3(bufferRoad.position.x, floorY, bufferRoad.position.z), Quaternion.identity));
         }
 
         Debug.Log("Update");
