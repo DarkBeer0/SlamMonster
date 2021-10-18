@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             status = !status;
+        
+
 
         movement = Input.GetAxis("Horizontal");
         if (movement > 0f)
@@ -47,6 +49,6 @@ public class PlayerController : MonoBehaviour
         else if (movement < 0f)
             rigidBody.velocity = new Vector2(movement * speed, rigidBody.velocity.y);
         else
-            rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(0, rigidBody.velocity.y); 
     }
 }
