@@ -31,24 +31,32 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (status)
-            rigidBody.position = new Vector2(rigidBody.position.x, floorY);
-        else
-            rigidBody.position = new Vector2(rigidBody.position.x, roofY);
-
-        
-
         if (Input.GetKeyDown(KeyCode.Space))
             status = !status;
-        
 
-
-        movement = Input.GetAxis("Horizontal");
+        /*movement = Input.GetAxis("Horizontal");
         if (movement > 0f)
             rigidBody.velocity = new Vector2(movement * speed, rigidBody.velocity.y);
         else if (movement < 0f)
             rigidBody.velocity = new Vector2(movement * speed, rigidBody.velocity.y);
         else
-            rigidBody.velocity = new Vector2(0, rigidBody.velocity.y); 
+            rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);  */
+    }
+
+    private void FixedUpdate()
+    {
+        if (status) { 
+            rigidBody.position = new Vector2(rigidBody.position.x, floorY);
+            rigidBody.transform.position += transform.right * speed * Time.deltaTime;
+        }
+        else { 
+            rigidBody.position = new Vector2(rigidBody.position.x, roofY);
+            rigidBody.transform.position += transform.right * speed * Time.deltaTime;
+        }
+    }
+
+    private static void PlaceObjectInLevel(Transform obj, Transform level, float offSetX, bool isFloor = true)
+    {
+
     }
 }
